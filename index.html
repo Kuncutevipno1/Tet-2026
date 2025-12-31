@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc Mừng Năm Mới 2026 💚</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(#e8f8f1, #b8e994);
+}
+
+/* Nội dung */
+.container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    top: 18%;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    color: #1e8449;
+    text-shadow: 2px 2px #ffffff;
+}
+
+p {
+    font-size: 22px;
+    color: #145a32;
+    background: rgba(255,255,255,0.65);
+    padding: 22px;
+    border-radius: 18px;
+    max-width: 720px;
+    margin: auto;
+}
+
+button {
+    margin-top: 22px;
+    padding: 14px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    background: #27ae60;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e8449;
+}
+
+/* Hoa rơi */
+.flower {
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear infinite;
+    z-index: 2;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Bánh trang trí */
+.decor {
+    position: absolute;
+    bottom: 20px;
+    font-size: 50px;
+    z-index: 2;
+}
+
+.left { left: 20px; }
+.right { right: 20px; }
+
+/* Canvas pháo hoa */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container">
+    <h1>🌸 Chúc Mừng Năm Mới 2026 🌸</h1>
+    <p>
+        Năm mới 2026 tới rồi 💚  
+        Bạn mình chúc người yêu của bạn mình  
+        luôn mạnh khỏe, vui vẻ và bình an mỗi ngày.  
+        Mong mọi mệt mỏi sẽ ở lại năm cũ,  
+        năm mới chỉ còn lại yêu thương, may mắn  
+        và thật nhiều nụ cười bên nhau 🍀  
+        Mong là năm nào cũng được đón Tết cùng bạn 💚
+    </p>
+    <button onclick="startAll()">🎶 Bật nhạc & Pháo hoa</button>
+</div>
+
+<!-- Nhạc Tết -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3f91fa96c1.mp3?filename=happy-new-year-118201.mp3" type="audio/mpeg">
+</audio>
+
+<div class="decor left">🟩 🎁</div>
+<div class="decor right">🎁 🍙</div>
+
+<script>
+/* Nhạc */
+function startAll() {
+    document.getElementById("music").play();
+    launchFireworks();
+}
+
+/* Hoa mai + hoa đào */
+const flowers = ["🌸", "🌼"];
+setInterval(() => {
+    const f = document.createElement("div");
+    f.className = "flower";
+    f.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+    f.style.left = Math.random() * innerWidth + "px";
+    f.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 10000);
+}, 300);
+
+/* Pháo hoa */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+window.onresize = () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+};
+
+function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function Firework(x, y) {
+    this.x = x;
+    this.y = y;
+    this.particles = [];
+    for (let i = 0; i < 60; i++) {
+        this.particles.push({
+            x, y,
+            vx: random(-4, 4),
+            vy: random(-4, 4),
+            alpha: 1
+        });
+    }
+}
+
+Firework.prototype.update = function() {
+    this.particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= 0.015;
+    });
+};
+
+Firework.prototype.draw = function() {
+    this.particles.forEach(p => {
+        ctx.fillStyle = `rgba(39,174,96,${p.alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+    });
+};
+
+let fireworks = [];
+
+function launchFireworks() {
+    setInterval(() => {
+        fireworks.push(new Firework(
+            random(100, canvas.width - 100),
+            random(100, canvas.height / 2)
+        ));
+    }, 800);
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    fireworks.forEach((fw, i) => {
+        fw.update();
+        fw.draw();
+        if (fw.particles[0].alpha <= 0) fireworks.splice(i, 1);
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
