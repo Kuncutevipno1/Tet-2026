@@ -26,6 +26,20 @@ canvas {
   z-index: 0;
 }
 
+/* ===== ICON TRANG TRÍ ===== */
+.decoration {
+  position: fixed;
+  font-size: 32px;
+  animation: float 6s ease-in-out infinite;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
 /* ===== PHONG THƯ ===== */
 .envelope {
   position: relative;
@@ -35,7 +49,7 @@ canvas {
   margin: auto;
   top: 50%;
   transform: translateY(-50%);
-  border-radius: 12px;
+  border-radius: 14px;
   cursor: pointer;
   box-shadow: 0 20px 40px rgba(0,0,0,.35);
   z-index: 2;
@@ -57,7 +71,6 @@ canvas {
   transform: rotateX(180deg);
 }
 
-/* ICON PHONG THƯ */
 .envelope::after {
   content: "💚";
   position: absolute;
@@ -73,7 +86,7 @@ canvas {
   top: 20px;
   left: 10px;
   width: 260px;
-  height: 150px;
+  height: 155px;
   background: #f1faee;
   color: #1b4332;
   padding: 16px;
@@ -87,7 +100,7 @@ canvas {
 
 .envelope.open .letter {
   opacity: 1;
-  transform: translateY(-90px);
+  transform: translateY(-95px);
 }
 
 h1 {
@@ -112,17 +125,28 @@ h1 {
 
 <canvas id="fireworks"></canvas>
 
+<!-- TRANG TRÍ -->
+<div class="decoration" style="top:15%; left:10%">🌸</div>
+<div class="decoration" style="top:20%; right:12%">🌼</div>
+<div class="decoration" style="bottom:18%; left:8%">🎍</div>
+<div class="decoration" style="bottom:22%; right:10%">🍀</div>
+<div class="decoration" style="top:35%; left:5%">🍙</div>
+<div class="decoration" style="top:40%; right:5%">🌿</div>
+<div class="decoration" style="bottom:40%; left:15%">🟩</div>
+<div class="decoration" style="bottom:45%; right:15%">🟫</div>
+
+<!-- PHONG THƯ -->
 <div class="envelope" onclick="openLetter()">
   <div class="letter">
     <h1>🎆 Năm mới 2026 🌿</h1>
     <p>
-      Vậy là mình và bạn đã cùng bước sang năm mới rồi 💚<br>
-      Mình không mong gì to lớn,<br>
-      chỉ mong năm nay bạn luôn bình yên 🍀<br>
-      khỏe mạnh 🌱 và cười nhiều hơn mỗi ngày.<br><br>
+      Một năm mới lại đến rồi 💚<br>
+      Mình chúc bạn luôn bình yên như sắc xanh này 🍀<br>
+      đủ ấm áp như bánh chưng ngày Tết 🟩<br>
+      đủ ngọt ngào như hoa nở đầu xuân 🌸🌼<br><br>
 
-      Nếu có lúc mệt,<br>
-      hy vọng mình vẫn là nơi bạn muốn ghé qua 💌
+      Mong rằng năm nay,<br>
+      mình vẫn có thể ở bên bạn theo cách dịu dàng nhất 💌
     </p>
   </div>
 </div>
