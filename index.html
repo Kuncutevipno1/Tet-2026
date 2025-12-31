@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chúc mừng năm mới 2026 💚</title>
 
 <style>
@@ -13,7 +14,7 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background: radial-gradient(circle at top, #c7f9cc, #2d6a4f);
   overflow: hidden;
   color: white;
@@ -26,33 +27,39 @@ canvas {
   z-index: 0;
 }
 
-/* ===== ICON TRANG TRÍ ===== */
+/* ===== TRANG TRÍ ===== */
 .decoration {
   position: fixed;
-  font-size: 32px;
+  font-size: 28px;
   animation: float 6s ease-in-out infinite;
   z-index: 1;
   opacity: 0.9;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
 }
 
 /* ===== PHONG THƯ ===== */
 .envelope {
   position: relative;
-  width: 280px;
-  height: 180px;
+  width: 300px;
+  max-width: 90%;
+  height: 190px;
   background: linear-gradient(135deg, #40916c, #52b788);
   margin: auto;
   top: 50%;
   transform: translateY(-50%);
-  border-radius: 14px;
+  border-radius: 16px;
   cursor: pointer;
-  box-shadow: 0 20px 40px rgba(0,0,0,.35);
+  box-shadow: 0 25px 45px rgba(0,0,0,.35);
   z-index: 2;
+  transition: transform .3s;
+}
+
+.envelope:hover {
+  transform: translateY(-52%) scale(1.02);
 }
 
 .envelope::before {
@@ -60,9 +67,9 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-top: 90px solid #74c69d;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 95px solid #74c69d;
   transform-origin: top;
   transition: 1s;
 }
@@ -74,49 +81,61 @@ canvas {
 .envelope::after {
   content: "💚";
   position: absolute;
-  bottom: 12px;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 26px;
+  font-size: 28px;
 }
 
 /* ===== THƯ ===== */
 .letter {
   position: absolute;
-  top: 20px;
+  top: 18px;
   left: 10px;
-  width: 260px;
-  height: 155px;
+  width: calc(100% - 20px);
+  min-height: 180px;
   background: #f1faee;
   color: #1b4332;
-  padding: 16px;
-  border-radius: 10px;
+  padding: 18px;
+  border-radius: 12px;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px);
   transition: 1s;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
+  text-align: center;
 }
 
 .envelope.open .letter {
   opacity: 1;
-  transform: translateY(-95px);
+  transform: translateY(-135px);
 }
 
 h1 {
-  margin-bottom: 8px;
-  font-size: 1.1em;
+  margin-bottom: 10px;
+  font-size: 1.15em;
   color: #1b4332;
 }
 
 /* GỢI Ý */
 .hint {
   position: fixed;
-  bottom: 30px;
+  bottom: 24px;
   width: 100%;
   font-size: 0.9em;
   opacity: 0.85;
   z-index: 2;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .letter {
+    font-size: 14px;
+    min-height: 190px;
+  }
+  .envelope.open .letter {
+    transform: translateY(-145px);
+  }
 }
 </style>
 </head>
@@ -125,41 +144,38 @@ h1 {
 
 <canvas id="fireworks"></canvas>
 
-<!-- TRANG TRÍ -->
-<div class="decoration" style="top:15%; left:10%">🌸</div>
-<div class="decoration" style="top:20%; right:12%">🌼</div>
-<div class="decoration" style="bottom:18%; left:8%">🎍</div>
-<div class="decoration" style="bottom:22%; right:10%">🍀</div>
-<div class="decoration" style="top:35%; left:5%">🍙</div>
-<div class="decoration" style="top:40%; right:5%">🌿</div>
-<div class="decoration" style="bottom:40%; left:15%">🟩</div>
-<div class="decoration" style="bottom:45%; right:15%">🟫</div>
+<!-- TRANG TRÍ TẾT -->
+<div class="decoration" style="top:14%; left:8%">🌸</div>
+<div class="decoration" style="top:18%; right:10%">🌼</div>
+<div class="decoration" style="bottom:18%; left:6%">🟩</div>
+<div class="decoration" style="bottom:22%; right:8%">🟫</div>
+<div class="decoration" style="top:38%; left:4%">🍀</div>
+<div class="decoration" style="top:42%; right:5%">🌿</div>
 
 <!-- PHONG THƯ -->
 <div class="envelope" onclick="openLetter()">
   <div class="letter">
     <h1>🎆 Năm mới 2026 🌿</h1>
     <p>
-      Một năm mới lại đến rồi 💚<br>
-      Mình chúc bạn luôn bình yên như sắc xanh này 🍀<br>
-      đủ ấm áp như bánh chưng ngày Tết 🟩<br>
-      đủ ngọt ngào như hoa nở đầu xuân 🌸🌼<br><br>
+      Vậy là mình và bạn đã cùng bước sang năm mới rồi 💚<br>
+      Mình không mong gì to lớn,<br>
+      chỉ mong năm nay bạn luôn bình yên 🍀<br>
+      khỏe mạnh 🌱 và cười nhiều hơn mỗi ngày.<br><br>
 
-      Mong rằng năm nay,<br>
-      mình vẫn có thể ở bên bạn theo cách dịu dàng nhất 💌
+      Nếu có lúc mệt,<br>
+      hy vọng mình vẫn là nơi bạn muốn ghé qua 💌
     </p>
   </div>
 </div>
 
 <div class="hint">💌 Chạm vào phong thư để mở & bật loa nha 🎶</div>
 
-<!-- NHẠC TẾT -->
+<!-- NHẠC -->
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_6b4f0e1b5c.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_6b4f0e1b5c.mp3">
 </audio>
 
 <script>
-/* MỞ THƯ */
 function openLetter() {
   const env = document.querySelector(".envelope");
   env.classList.add("open");
@@ -176,51 +192,41 @@ canvas.height = innerHeight;
 let particles = [];
 
 class Particle {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.vx = (Math.random() - 0.5) * 4;
-    this.vy = (Math.random() - 0.5) * 4;
-    this.life = 60;
-    this.color = `hsl(${Math.random()*360},100%,60%)`;
+  constructor(x,y){
+    this.x=x; this.y=y;
+    this.vx=(Math.random()-0.5)*4;
+    this.vy=(Math.random()-0.5)*4;
+    this.life=60;
+    this.color=`hsl(${Math.random()*360},100%,60%)`;
   }
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    this.life--;
-  }
-  draw() {
+  update(){ this.x+=this.vx; this.y+=this.vy; this.life--; }
+  draw(){
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 2, 0, Math.PI*2);
-    ctx.fillStyle = this.color;
+    ctx.arc(this.x,this.y,2,0,Math.PI*2);
+    ctx.fillStyle=this.color;
     ctx.fill();
   }
 }
 
-function firework() {
-  const x = Math.random() * canvas.width;
-  const y = Math.random() * canvas.height * 0.45;
-  for (let i = 0; i < 22; i++) {
-    particles.push(new Particle(x, y));
-  }
+function firework(){
+  const x=Math.random()*canvas.width;
+  const y=Math.random()*canvas.height*0.45;
+  for(let i=0;i<22;i++) particles.push(new Particle(x,y));
 }
 
-function animate() {
+function animate(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles = particles.filter(p => p.life > 0);
-  particles.forEach(p => {
-    p.update();
-    p.draw();
-  });
+  particles=particles.filter(p=>p.life>0);
+  particles.forEach(p=>{p.update();p.draw();});
   requestAnimationFrame(animate);
 }
 
-setInterval(firework, 900);
+setInterval(firework,900);
 animate();
 
-onresize = () => {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+onresize=()=>{
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
 };
 </script>
 
